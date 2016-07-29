@@ -16,8 +16,4 @@
 		</property>
 	</bean>
 
-	<bean id="contextInfo" class="org.th.spring.customscope.ContextInfo" scope="custom">
-        <aop:scoped-proxy/>
-    </bean>
-
 </beans>
