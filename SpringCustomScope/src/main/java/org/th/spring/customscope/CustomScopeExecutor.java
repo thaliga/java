@@ -11,4 +11,8 @@ public class CustomScopeExecutor {
 	public static <V> V execute(Callable<V> callable) {
 		return new ScopedCallable<>(callable).execute();
 	}
+
+	public static CustomScopeKey createContext() {
+		return CustomScopeContextHolder.createContext();
+	}
 }
