@@ -1,5 +1,5 @@
 package org.th.spring.customscope;
 
-public class ContextInfo {
+public class ScopedRunnableTest {
 
 }

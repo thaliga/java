@@ -6,7 +6,7 @@
 
 	<import resource="classpath:/spring-th-customscope.xml"/>
 
-	<bean id="contextInfo" class="org.th.spring.customscope.ContextInfo" scope="custom">
+	<bean id="contextInfo" class="org.th.spring.customscope.bean.ContextInfo" scope="custom">
         <aop:scoped-proxy/>
     </bean>
 
