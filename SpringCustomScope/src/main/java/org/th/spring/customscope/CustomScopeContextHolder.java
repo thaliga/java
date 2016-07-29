@@ -28,7 +28,7 @@ class CustomScopeContextHolder {
 	 * context then an {@link IllegalStateException} is thrown.
 	 */
 	static CustomScopeKey createContext() {
-		CustomScopeKey contextKey = createContextKey();
+		CustomScopeKey contextKey = new CustomScopeKey();
 		logger.debug("New context is created with scopeKey: {}", contextKey);
 
 		CustomScopeContextAttributes threadScopeAttributes = contextToAttributes.get(contextKey);
@@ -37,10 +37,6 @@ class CustomScopeContextHolder {
 			contextToAttributes.put(contextKey, threadScopeAttributes);
 		}
 		return contextKey;
-	}
-
-	static CustomScopeKey createContextKey() {
-		return new CustomScopeKey();
 	}
 
 	/**
@@ -56,17 +52,15 @@ class CustomScopeContextHolder {
 
 		CustomScopeKey threadContextKey = getContextKey();
 		if (threadContextKey != null) {
-			throw new IllegalStateException("Thread tried to be regiesterd in context " + contextKey
+			throw new IllegalStateException("Thread tried to be registered in context " + contextKey
 					+ " but was already registered in " + threadContextKey);
 		}
 
 		synchronized (contextKey) {
 			CustomScopeContextAttributes threadScopeAttributes = contextToAttributes.get(contextKey);
-
 			if (threadScopeAttributes == null) {
 				throw new IllegalStateException("Context (" + contextKey + ") does not exist!");
 			}
-
 			contextThreadLocal.set(contextKey);
 		}
 		logger.debug("Thread is registered to context: " + contextKey);
@@ -112,7 +106,6 @@ class CustomScopeContextHolder {
 				}
 			}
 		}
-
 		logger.debug("Context " + contextKey + " was deleted. ");
 
 		deregisterThreadFromContext();
@@ -124,9 +117,9 @@ class CustomScopeContextHolder {
 	 * logical work.
 	 */
 	static void deregisterThreadFromContext() {
-		CustomScopeKey context = getContextKey();
+		CustomScopeKey contextKey = getContextKey();
 		contextThreadLocal.set(null);
-		logger.debug("Thread is deregistered from context {}", context);
+		logger.debug("Thread is deregistered from context {}", contextKey);
 	}
 
 	static String getContextId() {
@@ -139,12 +132,12 @@ class CustomScopeContextHolder {
 	}
 
 	static CustomScopeKey startScope() {
-		CustomScopeKey scope = createContext();
-		registerThreadInContext(scope);
-		return scope;
+		CustomScopeKey contextKey = createContext();
+		registerThreadInContext(contextKey);
+		return contextKey;
 	}
 
-	static void stopScope(CustomScopeKey scope) {
-		deleteContext(scope);
+	static void stopScope(CustomScopeKey contextKey) {
+		deleteContext(contextKey);
 	}
 }

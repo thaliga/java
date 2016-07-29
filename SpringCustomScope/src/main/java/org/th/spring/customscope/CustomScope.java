@@ -12,7 +12,6 @@ import org.springframework.beans.factory.config.Scope;
  * logical block is not tied to any particular event (like incoming http request from a browser), <i>it should be started and closed programmatically</i>.
  * </br>
  * 
- * 
  * <ul><li>To start a new scope use: {@linkplain contextHolder#createContext()}. This should be called by the 'coordinator' thread.
  * <li>To register the current thread to the scope: {@linkplain contextHolder#registerThreadInContext(ScopeKey)} Multiple threads can be registered
  * to the same context, but one thread can be registered only to the one context. The 'coordinator' and 'children' threads should call it when they want to share some data.

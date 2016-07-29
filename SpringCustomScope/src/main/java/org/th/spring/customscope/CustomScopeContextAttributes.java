@@ -1,7 +1,5 @@
 package org.th.spring.customscope;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -63,9 +61,7 @@ class CustomScopeContextAttributes {
 	 */
 	private void executeContextDestructionCallbacks() {
 		synchronized (this.contextDestructionCallbacks) {
-			final Collection<Runnable> callbacks = new ArrayList<>(this.contextDestructionCallbacks.values());
-			callbacks.forEach(Runnable::run);
-			this.contextDestructionCallbacks.clear();
+			contextDestructionCallbacks.values().forEach(Runnable::run);
 		}
 	}
 

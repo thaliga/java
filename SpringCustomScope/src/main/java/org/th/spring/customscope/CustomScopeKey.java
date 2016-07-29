@@ -11,6 +11,6 @@ package org.th.spring.customscope;
  */
 public class CustomScopeKey {
 	CustomScopeKey() {
-		// decrease visibility, should be created by contextHolder
+		// decreased visibility, should be created by contextHolder
 	}
 }
