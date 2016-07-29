@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Enables creating new {@link CustomScope} and registering/deregistering
  * threads for this scope.
  *

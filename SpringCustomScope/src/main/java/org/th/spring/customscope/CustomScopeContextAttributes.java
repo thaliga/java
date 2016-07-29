@@ -5,15 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Stores the beans for an {@link CustomScope}.
  */
 class CustomScopeContextAttributes {
-
-	private static final Logger logger = LoggerFactory.getLogger(CustomScopeContextAttributes.class);
 
 	private final Map<String, Object> beans = new HashMap<>();
 
